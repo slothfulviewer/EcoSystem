@@ -1,0 +1,68 @@
+body, html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Provides a modern font stack */
+}
+.header-content {
+    display: flex; /* Enables flexbox layout */
+    align-items: center; /* Aligns items vertically in the center */
+  }
+  
+  .header-image {
+    width: 200px; /* Adjust the width as necessary */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between the image and the title */
+  }
+  
+  .display-4 {
+    margin-bottom: 0; /* Reduces space below the title if needed */
+  }
+  
+.container {
+    max-width: 1200px; /* Optimal reading width */
+}
+
+.display-4 {
+    font-weight: 300;
+    color: #333; /* Soften the headline color for better readability */
+}
+
+.img-fluid {
+    max-height: 300px; /* Limit image size and maintain aspect ratio */
+    margin-bottom: 20px; /* Space below image */
+}
+
+.lead {
+    font-size: 1.25rem; /* Larger lead paragraph */
+    color: #555; /* Subtle text color for emphasis */
+}
+
+.list-group-item {
+    background-color: #f8f9fa; /* Light background for list items */
+    border-left: 5px solid #007bff; /* Blue accent border */
+}
+
+.list-group-item strong {
+    color: #007bff; /* Match text strong to the border */
+}
+
+hr.my-4 {
+    border-top: 2px solid #bbb; /* Visible divider line */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px; /* Responsive padding */
+    }
+}
+.title {
+    white-space: nowrap; /* Prevents the title from wrapping */
+    overflow: hidden; /* Prevents text overflow */
+    text-overflow: ellipsis; /* Adds an ellipsis if the title is too long */
+    font-size: 2.5rem; /* Larger font size for visibility */
+    color: #004085; /* Stylish color for the title */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  }
+  
+  .container {
+    max-width: 1200px; /* Ensures container doesn't stretch too far */
+  }
+  

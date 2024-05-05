@@ -1,0 +1,40 @@
+.container {
+    max-width: 1200px; /* Optimal width for readability and design */
+  }
+  
+  h1, .form-label {
+    color: #0056b3; /* Consistent color for headers and labels */
+  }
+  
+  .table {
+    margin-top: 20px; /* Space above the table */
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f5f5f5; /* Hover effect for table rows */
+  }
+  
+  .filter-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px; /* Stylish form area */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  }
+  
+  .form-control, .form-select {
+    border-radius: 0.25rem; /* Rounded borders for inputs and selects */
+  }
+  
+  .btn-primary {
+    background-color: #004085; /* Dark blue button */
+    border-color: #003567; /* Slightly darker border for the button */
+  }
+  
+  .btn-primary:hover {
+    background-color: #003567; /* Darker on hover */
+  }
+  
+  .text-muted {
+    text-align: center; /* Centering text for no items available */
+  }
+  

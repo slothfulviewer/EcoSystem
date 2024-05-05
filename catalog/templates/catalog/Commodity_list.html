@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .commodity-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .commodity-list li {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .commodity-list a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .commodity-list a:hover {
+        color: #0056b3;
+    }
+
+    .iframe-container {
+        height: 600px;
+        width: 100%;
+        overflow: hidden;
+        border: none;
+    }
+
+    .iframe-container iframe {
+        height: 100%;
+        width: 100%;
+        border: none;
+    }
+
+    .title-enhanced {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 2.5rem;
+        color: #004085;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1 class="title-enhanced">商品类详情信息</h1>
+
+    {% if Commodity_list %}
+        <ul class="commodity-list">
+            {% for commodity in Commodity_list %}
+                <li>
+                    <a href="{{ commodity.get_absolute_url }}">{{ commodity.name }}</a>
+                    <a href="{% url 'category-detail' commodity.category.pk %}" class="text-muted">({{ commodity.category }})</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">There are no commodities in here.</p>
+    {% endif %}
+    
+    <div class="iframe-container">
+        <iframe src="http://127.0.0.1:8000/echart?type=商品粉丝组成"></iframe>
+    </div>
+</div>
+{% endblock %}
+

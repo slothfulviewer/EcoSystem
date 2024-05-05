@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{category.name }}</h1>
+  <table style="width:100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+      <td style="text-align: left; padding: 8px;"><strong>待完善：节假日对受欢迎程度影响</strong></td>
+      <td style="text-align: left; padding: 8px;">{{ commodity.name }}</td>
+    </tr>
+
+      <iframe src="http://127.0.0.1:8000/echart?type=近日商品类营销" style="width: 50%; height: 100%; border: none;"></iframe>
+
+  </div>
+{% endblock %}

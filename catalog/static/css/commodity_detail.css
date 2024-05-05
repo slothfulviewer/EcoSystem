@@ -1,0 +1,44 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .page-title {
+    text-align: center;
+    color: #204065;
+    margin-bottom: 20px;
+  }
+  
+  .detail-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .detail-table td, .detail-table th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .shade-row {
+    background-color: #f9f9f9;
+  }
+  
+  .detail-table a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .detail-table a:hover {
+    text-decoration: underline;
+  }
+  
+  .additional-info h4 {
+    padding-top: 20px;
+    color: #666;
+  }
+  

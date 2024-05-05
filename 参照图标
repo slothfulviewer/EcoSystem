@@ -1,0 +1,137 @@
+ let dataset = __dataset__; // 传入数据集
+// 假设 __dataset__ 是您提供的数据格式
+const colors = [
+    '#5470C6', // 深蓝
+    '#91CC75', // 柔和绿
+    '#EE6666', // 柔和红
+    '#FAC858', // 明亮黄
+    '#73C0DE', // 天蓝
+    '#3BA272', // 暗海绿
+    '#FC8452', // 橙色
+    '#9A60B4', // 淡紫
+    '#ea7ccc', // 桃红
+    '#FFA056', // 橙黄
+    '#59678C', // 深蓝灰
+    '#6F5553', // 褐色
+    '#c14089'  // 玫瑰红
+];
+// 从数据集中提取图例标签（即产品类型），去重
+let legend_label = [...new Set(dataset.slice(1).map(item => item[2]))];
+
+// 从数据集中提取X轴标签（即销售日期），去重并排序
+let xlabel = [...new Set(dataset.slice(1).map(item => item[0]))].sort();
+
+// 根据产品类型初始化系列数据
+let series = legend_label.map(type => ({
+    name: type,
+    type: 'bar',
+    data: new Array(xlabel.length).fill(0), // 初始化每个类型的销售额数组，长度与日期数量相同
+}));
+series.push({
+        type: 'pie',
+        id: 'pie', 
+        radius: '10%',
+        center: ['50%', '20%'], // 将饼图位置稍微向右调整，以避免与条形图重叠
+        emphasis: {
+            focus: 'self'
+        },
+        label: {
+            // 注意：这里的 formatter 需要根据您的具体数据进行调整
+        formatter: '{b}: {@2024-04-05} ({d}%)'
+    },
+    // encode 对象需要根据您的数据集结构进行相应的调整
+    // 假设数据集的结构是 ["销售日期", "销售额", "类型"]
+    encode: {
+        itemName: '类型', // 对应于 "类型" 字段
+        value: '销售额', // 对应于 "销售额" 字段
+        tooltip: '销售额'
+    },
+    // 饼图的数据直接来源于 dataset，这里需要额外的逻辑来筛选出特定日期的数据
+    data: generatePieData(dataset, '2024-04-09') // generatePieData 是一个假定的函数，用于生成饼图的数据
+});
+
+// 填充系列数据
+dataset.slice(1).forEach(row => {
+    let date = row[0];
+    let amount = row[1];
+    let type = row[2];
+    let dateIndex = xlabel.indexOf(date);
+    let typeIndex = legend_label.indexOf(type);
+    series[typeIndex].data[dateIndex] = amount; // 将销售额分配到对应的类型和日期
+});
+
+// 配置ECharts选项
+option__name__= {
+    color:colors,
+    title:{
+    text:"平均客单量",
+    x: "center",
+    y: "",
+    },
+    legend: {
+        data: legend_label // 显示图例
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' // 当鼠标悬停时，显示阴影效果
+        }
+    },
+    xAxis: {
+        type: 'category',
+data: xlabel // X轴显示日期
+    },
+    yAxis: {
+        type: 'value'
+    },
+grid: {
+    top: '30%',    // 减小顶部边距
+    left: '3%',    // 减小左侧边距
+    right: '3%',   // 减小右侧边距
+    bottom: '3%',  // 减小底部边距
+    containLabel: true
+},
+    series: series
+};
+myChart__name__.on('updateAxisPointer', function (event) {
+    const xAxisInfo = event.axesInfo[0];
+    if (xAxisInfo) {
+        // 获取用户悬停的x轴的值（即日期）
+        const hoverDate = xlabel[xAxisInfo.value];
+        
+        // 基于hoverDate生成饼图需要的数据
+        const pieData = generatePieData(__dataset__, hoverDate);
+ myChart__name__.setOption({
+            series: [{
+                id: 'pie',
+                // 直接使用 pieData 更新饼图数据
+                data: pieData,
+                // 因为 data 已经更新，无需在 formatter 中指定数据项
+                label: {
+                    formatter: '{b}: {c} ({d}%)'
+                },
+                // 移除 encode 设置，因为我们直接更新了 data
+            }]
+        });
+
+    }
+});
+myChart__name__.setOption(option__name__);
+function generatePieData(dataset, targetDate) {
+    return dataset.filter(row => row[0] === targetDate) // 筛选特定日期的数据
+        .map(row => ({
+            name: row[2], // "类型"
+            value: row[1]  // "销售额"
+        }));
+}
+
+
+select
+  sale_date as 销售日期,
+  total_amount as 销售额,
+  category as 类型
+from
+  catalog_salesrecord salesrecord
+order by
+ 类型
+;

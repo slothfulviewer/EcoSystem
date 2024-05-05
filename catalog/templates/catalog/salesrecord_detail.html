@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/details.css' %}" /> <!-- Ensure this CSS file is available in your static files -->
+
+<h1 class="page-title">销售记录详情</h1>
+
+<table class="details-table">
+  <tr class="header-row">
+    <th>字段</th>
+    <th>值</th>
+  </tr>
+  <tr>
+    <td>销售日期</td>
+    <td>{{ salesrecord.sale_date }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>上架时间</td>
+    <td>{{ salesrecord.soldon_date }}</td>
+  </tr>
+  <tr>
+    <td>下架时间</td>
+    <td>{{ salesrecord.soldout_date }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>主播</td>
+    <td><a href="{% url 'anchor-detail' salesrecord.anchor.pk %}">{{ salesrecord.anchor.name }}</a></td>
+  </tr>
+  <tr>
+    <td>商品</td>
+    <td><a href="{% url 'Commodity-detail' salesrecord.commodity.pk %}">{{ salesrecord.commodity.name }}</a></td>
+  </tr>
+  <tr class="shade-row">
+    <td>分类</td>
+    <td>{{ salesrecord.category }}</td>
+  </tr>
+  <tr>
+    <td>价格</td>
+    <td>¥{{ salesrecord.price }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>折扣率</td>
+    <td>{{ salesrecord.count }}%</td>
+  </tr>
+  <tr>
+    <td>销售量</td>
+    <td>{{ salesrecord.sale_amount }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>坑位费</td>
+    <td>¥{{ salesrecord.extra_commission }}</td>
+  </tr>
+  <tr>
+    <td>销售额</td>
+    <td>¥{{ salesrecord.total_amount }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>订单收入</td>
+    <td>¥{{ salesrecord.total_income }}</td>
+  </tr>
+  <tr>
+    <td>状态</td>
+    <td>{{ salesrecord.get_status_display }}</td>
+  </tr>
+  <tr class="shade-row">
+    <td>备注
+    </td>
+    <td>{{ salesrecord.imprint }}</td>
+  </tr>
+</table>
+{% endblock %}

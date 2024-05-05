@@ -1,0 +1,36 @@
+.container {
+    max-width: 800px; /* Sets the maximum width of the container for better readability */
+  }
+  
+  .list-group-item {
+    border-radius: 0.5rem; /* Rounded corners for a modern look */
+    margin-bottom: 5px; /* Space between items */
+    background-color: #f8f9fa; /* Light background for each item */
+    border: 1px solid #ddd; /* Subtle borders */
+    color: #333; /* Darker text for better readability */
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effects */
+  }
+  
+  .list-group-item:hover {
+    background-color: #e9ecef; /* Lighter background on hover */
+    color: #0056b3; /* Change text color on hover */
+  }
+  
+  .list-group-item-action:hover {
+    text-decoration: none; /* Removes underline on hover */
+  }
+  
+  .text-center {
+    text-align: center; /* Centers the text */
+  }
+  
+  .text-muted {
+    color: #6c757d; /* Muted text color for no items message */
+  }
+  
+  h1 {
+    color: #004085; /* Sets a specific color for the header */
+    padding-bottom: 0.5rem; /* Padding below the header */
+    border-bottom: 2px solid #eee; /* A subtle bottom border for the header */
+  }
+  

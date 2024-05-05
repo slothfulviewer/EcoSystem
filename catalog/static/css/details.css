@@ -1,0 +1,65 @@
+/* Base settings for body to standardize font and background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A clean, modern sans-serif font */
+    background-color: #f4f4f4; /* Light grey background for slight contrast */
+    color: #333; /* Dark grey color for text for better readability */
+  }
+  
+  .page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem; /* Increase size for significance */
+    color: #204065; /* A deeper blue for elegance */
+  }
+  
+  /* Styling for the details table */
+  .details-table {
+    width: 100%;
+    margin: auto;
+    background-color: white; /* White background to make the table stand out */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for modern look */
+    overflow: hidden; /* Ensures the border radius clips the content */
+    border-collapse: separate; /* Ensures cells are treated separately for spacing */
+    border-spacing: 0; /* Removes spacing between cells */
+  }
+  
+  .details-table th, .details-table td {
+    text-align: left;
+    padding: 12px 16px; /* More padding for a spacious look */
+    border-bottom: 1px solid #ccc; /* Keeps a subtle line between rows */
+  }
+  
+  .header-row {
+    background-color: #e8efff; /* Light blue for header row for distinction */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .shade-row {
+    background-color: #ffffff; /* Alternate rows with white */
+  }
+  
+  .details-table th {
+    font-weight: 600; /* Slightly bolder than normal for definition */
+  }
+  
+  .details-table a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .details-table a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive design tweaks */
+  @media (max-width: 768px) {
+    .details-table, .details-table th, .details-table td {
+      padding: 8px; /* Slightly less padding on smaller screens */
+    }
+  
+    .page-title {
+      font-size: 1.5rem; /* Smaller title on mobile for space conservation */
+    }
+  }
+  

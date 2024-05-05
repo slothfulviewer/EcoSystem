@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/commodity_detail.css' %}" /> <!-- Ensure this CSS file is available in your static files -->
+
+<div class="container">
+  <h1 class="page-title">商品详情</h1>
+
+  <table class="detail-table">
+    <tr class="shade-row">
+      <td><strong>名称</strong></td>
+      <td>{{ commodity.name }}</td>
+    </tr>
+    <tr>
+      <td><strong>分类</strong></td>
+      <td><a href="{% url 'category-detail' commodity.category.pk %}">{{ commodity.category }}</a></td>
+    </tr>
+    <tr class="shade-row">
+      <td><strong>价格</strong></td>
+      <td>{{ commodity.price }}元</td>
+    </tr>
+    <tr>
+      <td><strong>佣金比例</strong></td>
+      <td>{{ commodity.commission_rate }}%</td>
+    </tr>
+    <tr class="shade-row">
+      <td><strong>历史销量</strong></td>
+      <td>{{ commodity.history_sell }}万件</td>
+    </tr>
+    <tr>
+      <td><strong>过去30天浏览量</strong></td>
+      <td>{{ commodity.history_amount }}万次</td>
+    </tr>
+    <tr class="shade-row">
+      <td><strong>粉丝性别构成</strong></td>
+      <td>{{ commodity.gender }}</td>
+    </tr>
+    <tr>
+      <td><strong>粉丝年龄构成</strong></td>
+      <td>{{ commodity.Age }}</td>
+    </tr>
+    <tr class="shade-row">
+      <td><strong>网页链接</strong></td>
+      <td><a href="{{ commodity.web_connect }}">访问商品页面</a></td>
+    </tr>
+  </table>
+
+  <div class="additional-info">
+    <h4>待补充</h4>
+    <!-- You can add more details here -->
+  </div>
+</div>
+{% endblock %}

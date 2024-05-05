@@ -1,0 +1,29 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+  }
+/* Custom styles for the current user display */
+.current-user {
+  background-color: #007bff; /* Bootstrap primary color for contrast */
+  color: rgb(255, 0, 0); /* White text for readability */
+  padding: 10px; /* Padding for better spacing */
+  border-radius: 5px; /* Rounded corners for a smoother look */
+  margin-top: 10px; /* Extra space above the user display */
+  margin-bottom: 10px; /* Extra space below the user display */
+  font-weight: bold; /* Make the font bold */
+}
+
+.current-user a {
+  color: rgb(255, 0, 0); /* Ensures links inside this div remain white */
+}
+
+/* Style adjustments for better responsiveness on small screens */
+@media screen and (max-width: 767px) {
+  .sidebar-nav {
+      padding-top: 10px; /* Reduce top padding on smaller screens */
+  }
+  .current-user {
+      font-size: 16px; /* Slightly larger font size for better readability on small devices */
+  }
+}

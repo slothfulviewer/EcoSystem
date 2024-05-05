@@ -1,0 +1,93 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/salesrecord.css' %}" /> <!-- Make sure this CSS file is available in your static files -->
+
+<div class="container mt-5">
+  <h1 class="mb-4">销售记录</h1>
+
+  <!-- Filter Form -->
+  <div class="filter-form mb-3">
+    <form id="filter-form" class="row g-3">
+      <div class="col-md-3">
+        <label for="start_date" class="form-label">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="end_date" class="form-label">End Date:</label>
+        <input type="date" id="end_date" name="end_date" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="anchor" class="form-label">Anchor:</label>
+        <select id="anchor" name="anchor" class="form-select">
+          <option value="">--- Select Anchor ---</option>
+          {% for anchor in unique_anchors %}
+          <option value="{{ anchor }}">{{ anchor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="category" class="form-label">Category:</label>
+        <select id="category" name="category" class="form-select">
+          <option value="">--- Select Category ---</option>
+          {% for category in unique_categories %}
+          <option value="{{ category }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Sales Records Table -->
+  <div id="sales-records">
+    {% if SalesRecord_list %}
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">销售日期</th>
+          <th scope="col">主播</th>
+          <th scope="col">商品</th>
+          <th scope="col">类型</th>
+          <th scope="col">销售量</th>
+          <th scope="col">坑位费（元）</th>
+          <th scope="col">佣金率（%）</th>
+          <th scope="col">收益（元）</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in SalesRecord_list %}
+        <tr>
+          <td><a href="{{ record.get_absolute_url }}">{{ record.sale_date }}</a></td>
+          <td><a href="{% url 'anchor-detail' record.anchor.pk %}">{{ record.anchor.name }}</a></td>
+          <td><a href="{% url 'Commodity-detail' record.commodity.pk %}">{{ record.commodity.name }}</a></td>
+          <td>{{ record.category }}</td>
+          <td>{{ record.sale_amount }}</td>
+          <td>{{ record.extra_commission }}</td>
+          <td>{{ record.commodity.commission_rate }}</td>
+          <td>{{ record.total_income }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-muted">There are no sales records in the system.</p>
+    {% endif %}
+  </div>
+  
+  <!-- Chart Containers -->
+  <div class="row mt-4">
+    <div class="col-lg-6 col-md-12">
+      <iframe src="http://127.0.0.1:8000/echart?type=销售额" style="width:100%; height:450px; border:none;"></iframe>
+    </div>
+    <div class="col-lg-6 col-md-12">
+    <iframe src="http://127.0.0.1:8000/echart?type=近日商品类营销" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+  </div>
+
+</div>
+</div>
+{% endblock %}

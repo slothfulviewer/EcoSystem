@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" /> <!-- Link to your custom CSS -->
+
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <div class="col-md-12">
+      <div class="header-content">
+        <img src="{% static 'images/E-commerce live streaming information management system.png' %}" alt="E-commerce Live Streaming" class="header-image">
+        <div>
+          <h1 class="display-4">电商直播管理信息系统</h1>
+          <p class="lead">欢迎来到 <em>电商直播管理信息系统</em></p>
+          <p>该系统提供对主播信息管理，商品类型管理，直播收益管理，以及对直播商品和人员的简单运筹规划。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="mb-4">当前系统信息</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>当前在职主播数：</strong> {{ 在职主播数 }}</li>
+        <li class="list-group-item"><strong>当前营销商品类型：</strong> {{ 商品类型 }}</li>
+        <li class="list-group-item"><strong>总商品数:</strong> {{ 商品数 }}</li>
+        <li class="list-group-item"><strong>当前折扣商品数:</strong> {{ 折扣商品数 }}</li>
+        <li class="list-group-item"><strong>历史直播订单数:</strong> {{ 历史直播订单数 }}</li>
+        <li class="list-group-item"><strong>当前账户访问量 :</strong>{{ 访问量 }}次</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <!-- Add any additional dynamic content here -->
+    </div>
+  </div>
+</div>
+{% endblock %}

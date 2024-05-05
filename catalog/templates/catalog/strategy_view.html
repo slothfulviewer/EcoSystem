@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>选品运筹规划 - {{ anchor.name }}</h1>
+  <div>
+    <h2>商品列表及推荐策略</h2>
+    {% if strategy_results %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>时间段</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品类型</th>
+            <th>预计销售额</th>
+            <th>预计收入</th>
+            <th>预计主播收入</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in strategy_results %}
+          <tr>
+            <td>{{ result.time_slot }}</td>
+            <td>{{ result.product_name }}</td>
+            <td>{{ result.product_price }}</td>
+            <td>{{ result.product_category }}</td>
+            <td>{{ result.expected_sales }}元</td>
+            <td>{{ result.expected_revenue }}元</td>
+            <td>{{ result.expected_anchor_income }}元</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        数据表展示结果如下：
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>时间段</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品类型</th>
+            <th>预计销售额</th>
+            <th>预计收入</th>
+            <th>预计主播收入</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for slot in time_slots %}
+          <tr>
+            <td>{{ slot }}</td>
+            <td>示例商品</td>
+            <td>20.00元</td>
+            <td>示例类别</td>
+            <td>15000元</td>
+            <td>13000元</td>
+            <td>2000元</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

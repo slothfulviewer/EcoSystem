@@ -1,0 +1,58 @@
+{% extends "base_generic.html" %}
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        {% block sidebar %}
+          <ul class="sidebar-nav">
+            <li><a href="{% url 'indexs' %}">主页</a></li>
+            <li><a href="{% url 'Commodities' %}">商品列表</a></li>
+            <li><a href="{% url 'anchors' %}">主播列表</a></li>
+            <li><a href="{% url 'SalesRecords' %}">订单列表</a></li>
+            <li><a href="{% url 'Categories' %}">商品品类列表</a></li>
+            {% if user.is_authenticated %}
+            <li>当前用户: {{ user.get_username }}</li>
+            {% if perms.anchor.can_renew_anchor %}
+            管理权限
+            <li>-<a href="{% url 'anchor_create'%}">新增主播</a></li>
+            <li>-<a href="{% url 'anchor_update' anchor.id %}">更新主播</a></li>
+            {% endif %}
+            <li><form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">登出账号</button>
+              </form>
+            </li>
+
+          {% else %}
+            <li><a href="{% url 'login'%}?next={{request.path}}">登錄</a></li>
+          {% endif %}
+          </ul>
+        {% endblock %}
+      </div>
+
+      {% block content %}
+      <div class="col-md-10">
+        <div class="container mt-4">
+          <h1 class="display-4">{{ anchor.name }}</h1>
+          <div class="card">
+            <div class="card-body">
+              <p><strong>入职时间:</strong> {{ anchor.hire_date }}</p>
+              <p><strong>粉丝量:</strong> {{ anchor.amount }}W人</p>
+              <p><strong>直播间网址:</strong> <a href="{{ anchor.live_house }}">{{ anchor.live_house }}</a></p>
+              <p><strong>基本工资:</strong> ¥{{ anchor.base_salary }}</p>
+              <p><strong>本月佣金:</strong> ¥{{ anchor.commission }}</p>
+              <p><strong>直播时间段:</strong> {{ anchor.display_Time }}</p>
+              <p><strong>关联商品:</strong> {{ anchor.display_Commodity }}</p>
+              <p><strong>热销商品类型:</strong> {{ anchor.display_Category }}</p>
+              <p><strong>粉丝构成:</strong> {{ anchor.gender }}</p>
+              <p><strong>客单量:</strong> {{ anchor.Cost }}</p>
+            </div>
+          </div>
+          <div class="mt-4" style="height: 600px;">
+            <iframe src="http://127.0.0.1:8000/echart?type=粉丝构成" style="width:100%;height:100%"></iframe>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
